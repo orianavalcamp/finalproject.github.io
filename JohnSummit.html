@@ -266,10 +266,10 @@
         let isPopupVisible = false;
 
         function resumeAudioContext() {
-            if (audioContext.state === "suspended") {
-                audioContext.resume();
-            }
+        if (audioContext.state === "suspended") {
+            audioContext.resume();
         }
+    }
 
         function setUpAudioSource(audioSource, audioElement) {
             audioElement.src = audioSource;
@@ -280,6 +280,7 @@
         }
 
         function togglePlayPause() {
+            resumeAudioContext();
             if (isPlaying) {
                 audio1.pause();
                 audio2.pause();
