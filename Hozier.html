@@ -229,5 +229,142 @@
             <input id="volume2" type="range" min="0" max="1" step="0.01" value="1">
         </div>
     </div>
+
+<script>
+        const audio1 = document.getElementById("audio1");
+        const audio2 = document.getElementById("audio2");
+        const playPauseButton = document.getElementById("playPauseButton");
+        const progressBar = document.getElementById("progressBar");
+        const progressContainer = document.querySelector(".progress-container");
+        const audioMenuItems = document.querySelectorAll(".audioMenuItem");
+        const popup = document.getElementById("popup");
+        const showPopupBtn = document.getElementById("showPopupBtn");
+        const volumeSlider1 = document.getElementById("volume1");
+        const volumeSlider2 = document.getElementById("volume2");
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        let isPlaying = false;
+        let isPopupVisible = false;
+
+        const panNode1 = audioContext.createStereoPanner();
+        const panNode2 = audioContext.createStereoPanner();
+        const audioSource1 = audioContext.createBufferSource();
+        const audioSource2 = audioContext.createBufferSource();
+
+        panNode1.connect(audioContext.destination);
+        panNode2.connect(audioContext.destination);
+
+
+        function setUpAudioSource(audioSource, audioElement) {
+            audioElement.src = audioSource;
+            audioElement.load();
+            audioPlayerContainer.style.display = "block";
+            playPauseButton.textContent = "Play";
+            progressBar.style.width = "0%";
+        }
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                audio1.pause();
+                audio2.pause();
+                playPauseButton.textContent = "Play";
+            } else {
+                audio1.play();
+                audio2.play();
+                playPauseButton.textContent = "Pause";
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function resumeAudioContext() {
+          if (audioContext.state === 'suspended') {
+            audioContext.resume().then(() => {
+              console.log("AudioContext resumed.");
+            }).catch(error => {
+              console.error("Error resuming AudioContext:", error);
+            });
+          }
+        }
+
+        function updateProgressBar() {
+            const totalDuration = Math.max(audio1.duration, audio2.duration);
+            const currentTime = Math.max(audio1.currentTime, audio2.currentTime);
+            const progress = (currentTime / totalDuration) * 100;
+            progressBar.style.width = progress + "%";
+        }
+
+        function handleProgressClick(event) {
+            const progressContainerWidth = progressContainer.offsetWidth;
+            const clickPosition = event.offsetX;
+            const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio2.duration);
+            audio1.currentTime = newTime;
+            audio2.currentTime = newTime;
+        }
+
+        function togglePopup() {
+            isPopupVisible = !isPopupVisible;
+            if (isPopupVisible) {
+                popup.style.display = "flex";
+            } else {
+                popup.style.display = "none";
+            }
+        }
+
+        audioMenuItems.forEach(item => {
+            item.addEventListener("click", (event) => {
+                const audioSource = item.getAttribute("data-audio");
+                const audioSource2 = item.getAttribute("data-audio2");
+                setUpAudioSource(audioSource, audio1);
+                if (audioSource2) setUpAudioSource(audioSource2, audio2);
+                togglePlayPause();
+            });
+        });
+
+        playPauseButton.addEventListener("click", togglePlayPause);
+
+        showPopupBtn.addEventListener("click", togglePopup);
+
+        // Update the progress bar as the audio plays
+        audio1.addEventListener("timeupdate", () => {
+            const progress = (audio1.currentTime / audio1.duration) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+
+        // Click event to seek audio position
+        progressContainer.addEventListener("click", (e) => {
+            const progressWidth = progressContainer.offsetWidth;
+            const clickPosition = e.offsetX;
+            const seekTime = (clickPosition / progressWidth) * audio1.duration;
+            audio1.currentTime = seekTime;
+            audio2.currentTime = seekTime;
+        });
+
+        window.addEventListener("click", (event) => {
+            if (event.target === popup) {
+                popup.style.display = "none";
+            }
+        });
+
+        volumeSlider1.addEventListener("input", (event) => {
+                    const volume = event.target.value;
+                    audio1.volume = volume;
+                });
+
+        volumeSlider2.addEventListener("input", (event) => {
+                    const volume = event.target.value;
+                    audio2.volume = volume;
+                });
+
+        panSlider1.addEventListener("input", function(event) => {
+            panNode1.pan.value = event.target.value;
+        });
+
+        panSlider2.addEventListener("input", function(event) => {
+            panNode2.pan.value = event.target.value;
+        });
+
+        setInterval(updateProgressBar, 100);
+    </script>
 </body>
 </html>
