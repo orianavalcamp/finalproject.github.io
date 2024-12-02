@@ -375,6 +375,9 @@
         });
 
         setInterval(updateProgressBar, 100);
+
+         // Ensure the audio context is resumed on user interaction
+        window.addEventListener("click", resumeAudioContext);
     </script>
 </body>
 </html>
