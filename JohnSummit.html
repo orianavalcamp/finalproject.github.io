@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Oriana Valcamp Final Project</title>
     <style>
@@ -47,37 +47,318 @@
             }
         }
 
-    	.container {
-        	display: flex;
-        	flex-wrap: wrap;
-        	justify-content: center;
-    	}
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    	.item {
-       	 	width: 100%;
-       	 	max-width: 400px;
-        	margin: 20px;
-        	text-align: center;
-    	}
-    	img{
-    		cursor: pointer;
-    	}
+        .item {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+            text-align: center;
+        }
 
-        .button{
-            font-family: league script;
-            background-color: black;
-            width: 25%;
-            color: white;
+        img{
             cursor: pointer;
         }
 
-	</style>
+        .button{
+            font-family: league script;
+            background-color: rosybrown;
+            width: 20%;
+            color: saddlebrown;
+            cursor: pointer;
+        }
+
+        #myInput {
+            box-sizing: border-box;
+            background-image: url('searchicon.png');
+            background-position: 14px 12px;
+            background-repeat: no-repeat;
+            font-size: 15pt;
+            font-family: league script;
+            padding: 14px 20px 12px 45px;
+            border: none;
+        }
+
+        #myInput:focus {outline: 3px solid #ddd;}
+
+        .dropdown {
+            float: left;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 100px;
+            background-color: rosybrown;
+            min-width: 200px;
+            min-height: 50vh;
+            overflow: auto;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: saddlebrown;
+            padding: 12px 16px;
+            font-size: 12pt;
+            text-decoration: none;
+            font-family: league script;
+            display: block;
+        }
+
+        .dropdown a:hover {background-color: white}
+
+        .show {display: block;}
+
+        .audio-container {
+            text-align: center;
+            width: 50%;
+            position: absolute;
+            left: 25%;
+            top: 10px;
+        }
+
+        .progress-container {
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: saddlebrown;
+            width: 0;
+            transition: width 0.1s;
+        }
+
+        .audio-container .progress-container:hover .progress-bar {
+            background-color: saddlebrown;
+        }
+
+        /* The Popup - hidden by default */
+        .popup {
+            display: none; /* Hide popup by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure the popup is above all other content */
+        }
+
+        /* Popup Content */
+        .popup-content {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 80%;
+            text-align: left;
+            font-family: league script;
+            accent-color: saddlebrown;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #000;
+        }
+    </style>
 </head>
 <body>
     <a href = "FinalProject.html">
-        <button class="button" style="font-size: 20pt;">Back to Main Gallery</button>
+        <button class="button" style="font-size: 12pt;">Back to Main Gallery</button>
     </a>
-    <img style="width: 100px; position: absolute; top: 0px; right: 0px;" src="record.gif">
-    <img style="width: 75px; position: absolute; bottom: 0px; left: 10px;" src="tinted_mixer.png">
+    <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
+        <button>
+            <img style="width: 100px; position: absolute; top: 0px; right: 0px;" src="record.gif">
+        </button>
+      <div class="dropdown-content">
+        <a href="#" class="audioMenuItem" data-audio="DeSelby1Vocals.mp3" data-audio2 = "DeSelby1Instrument.mp3">DeSelby Part 1</a>
+        <a href="#" class="audioMenuItem" data-audio="DeSelby2Vocals.mp3" data-audio2 = "DeSelby2Instrument.mp3">DeSelby Part 2</a>
+        <a href="#" class="audioMenuItem" data-audio="FirstTimeVocals.mp3" data-audio2="FirstTimeInstrument.mp3">First Time</a>
+        <a href="#" class="audioMenuItem" data-audio="FrancescaVocals.mp3" data-audio2="FrancescaInstrument.mp3">Francesca</a>
+        <a href="#" class="audioMenuItem" data-audio="ICarrionVocals.mp3" data-audio2="ICarrionInstrument.mp3">I, Carrion</a>
+        <a href="#" class="audioMenuItem" data-audio="EatYouYoungVocals.mp3" data-audio2="EatYourYoungInstrument.mp3">Eat Your Young</a>
+        <a href="#" class="audioMenuItem" data-audio="DamageGetsDoneVocals.mp3" data-audio2="DamageGetsDoneInstrument.mp3">Damage Gets Done</a>
+        <a href="#" class="audioMenuItem" data-audio="WhoWeAreVocals.mp3" data-audio2="WhoWeAreInstrument.mp3">Who We Are</a>
+        <a href="#" class="audioMenuItem" data-audio="SonOfNyxVocals.mp3" data-audio2="SonOfNyxInstrument.mp3">Son of Nyx</a>
+        <a href="#" class="audioMenuItem" data-audio="AllThingsEndVocals.mp3" data-audio2="AllThingsEndInstrument.mp3">All Things End</a>
+        <a href="#" class="audioMenuItem" data-audio="WarmClimateVocals.mp3" data-audio2="WarmClimateInstrument.mp3">To Someone From A Warm Climate</a>
+        <a href="#" class="audioMenuItem" data-audio="ButcheredTongueVocals.mp3" data-audio2="ButcheredTongueInstrument.mp3">Butchered Tongue</a>
+        <a href="#" class="audioMenuItem" data-audio="AnythingButVocals.mp3" data-audio2="AnythingButInstrument.mp3">Anything But</a>
+        <a href="#" class="audioMenuItem" data-audio="AbstractVocals.mp3" data-audio2="AbstractInstrument.mp3">Butchered Tongue</a>
+        <a href="#" class="audioMenuItem" data-audio="UnknownVocals.mp3" data-audio2="UnknownInstrument.mp3">Unknown / Nth</a>
+        <a href="#" class="audioMenuItem" data-audio="FirstLightVocals.mp3" data-audio2="FirstLightInstrument.mp3">First Light</a>
+      </div>
+    </div>
+
+    <div class="audio-container" id="audioPlayerContainer" style="display: none; position: center;">
+        <audio id="audio1" preload="auto"></audio>
+        <audio id="audio2" preload="auto"></audio>
+
+        <button class= "button" style="font-size: 12pt; width: 35%;" id="playPauseButton">Play</button>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+    </div>
+        <button id="showPopupBtn">
+            <img style="width: 75px; position: absolute; bottom: 0px; left: 10px;" src="mixer.png">
+        </button>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <label for="volume1">Vocal Volume: </label>
+            <input id="volume1" type="range" min="0" max="1" step=".01" value="1">
+            <br>
+            <label for="volume2">Instrument Volume: </label>
+            <input id="volume2" type="range" min="0" max="1" step="0.01" value="1">
+        </div>
+    </div>
+    
+    <script>
+        const audio1 = document.getElementById("audio1");
+        const audio2 = document.getElementById("audio2");
+        const playPauseButton = document.getElementById("playPauseButton");
+        const progressBar = document.getElementById("progressBar");
+        const progressContainer = document.querySelector(".progress-container");
+        const audioMenuItems = document.querySelectorAll(".audioMenuItem");
+        const popup = document.getElementById("popup");
+        const showPopupBtn = document.getElementById("showPopupBtn");
+        const volumeSlider1 = document.getElementById("volume1");
+        const volumeSlider2 = document.getElementById("volume2");
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        let isPlaying = false;
+        let isPopupVisible = false;
+
+        function setUpAudioSource(audioSource, audioElement) {
+            audioElement.src = audioSource;
+            audioElement.load();
+            audioPlayerContainer.style.display = "block";
+            playPauseButton.textContent = "Play";
+            progressBar.style.width = "0%";
+        }
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                audio1.pause();
+                audio2.pause();
+                playPauseButton.textContent = "Play";
+            } else {
+                audio1.play();
+                audio2.play();
+                playPauseButton.textContent = "Pause";
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function resumeAudioContext() {
+          if (audioContext.state === 'suspended') {
+            audioContext.resume().then(() => {
+              console.log("AudioContext resumed.");
+            }).catch(error => {
+              console.error("Error resuming AudioContext:", error);
+            });
+          }
+        }
+
+        function updateProgressBar() {
+            const totalDuration = Math.max(audio1.duration, audio2.duration);
+            const currentTime = Math.max(audio1.currentTime, audio2.currentTime);
+            const progress = (currentTime / totalDuration) * 100;
+            progressBar.style.width = progress + "%";
+        }
+
+        function handleProgressClick(event) {
+            const progressContainerWidth = progressContainer.offsetWidth;
+            const clickPosition = event.offsetX;
+            const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio2.duration);
+            audio1.currentTime = newTime;
+            audio2.currentTime = newTime;
+        }
+
+        function togglePopup() {
+            isPopupVisible = !isPopupVisible;
+            if (isPopupVisible) {
+                popup.style.display = "flex";
+            } else {
+                popup.style.display = "none";
+            }
+        }
+
+        audioMenuItems.forEach(item => {
+            item.addEventListener("click", (event) => {
+                const audioSource = item.getAttribute("data-audio");
+                const audioSource2 = item.getAttribute("data-audio2");
+                setUpAudioSource(audioSource, audio1);
+                if (audioSource2) setUpAudioSource(audioSource2, audio2);
+                togglePlayPause();
+            });
+        });
+
+        playPauseButton.addEventListener("click", togglePlayPause);
+
+        showPopupBtn.addEventListener("click", togglePopup);
+
+        // Update the progress bar as the audio plays
+        audio1.addEventListener("timeupdate", () => {
+            const progress = (audio1.currentTime / audio1.duration) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+
+        audio2.addEventListener("timeupdate", () => {
+            const progress = (audio2.currentTime / audio2.duration) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+
+        // Click event to seek audio position
+        progressContainer.addEventListener("click", (e) => {
+            const progressWidth = progressContainer.offsetWidth;
+            const clickPosition = e.offsetX;
+            const seekTime1 = (clickPosition / progressWidth) * audio1.duration;
+            const seekTime2 = (clickPosition / progressWidth) * audio2.duration;
+            audio1.currentTime = seekTime1;
+            audio2.currentTime = seekTime2;
+        });
+
+        window.addEventListener("click", (event) => {
+            if (event.target === popup) {
+                popup.style.display = "none";
+            }
+        });
+
+        volumeSlider1.addEventListener("input", (event) => {
+                    const volume = event.target.value;
+                    audio1.volume = volume;
+                });
+
+        volumeSlider2.addEventListener("input", (event) => {
+                    const volume = event.target.value;
+                    audio2.volume = volume;
+                });
+
+        setInterval(updateProgressBar, 100);
+    </script>
 </body>
 </html>
