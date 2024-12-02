@@ -289,7 +289,7 @@
         function handleProgressClick(event) {
             const progressContainerWidth = progressContainer.offsetWidth;
             const clickPosition = event.offsetX;
-            const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio2.duration);
+            const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio1.duration);
             audio1.currentTime = newTime;
             audio2.currentTime = newTime;
         }
