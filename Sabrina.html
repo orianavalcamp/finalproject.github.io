@@ -227,14 +227,6 @@
             <br>
             <label for="volume2">Instrument Volume: </label>
             <input id="volume2" type="range" min="0" max="1" step="0.01" value="1">
-            <br>
-            <label for="pan1">Pan Vocals:</label>
-            <input id="pan1" type="range" min="-1" max="1" step="0.1" value="0">
-            <br>
-            <label for="pan2">Pan Instrumental:</label>
-            <input id="pan2" type="range" min="-1" max="1" step="0.1" value="0">
-
-            <br>
         </div>
     </div>
     
@@ -249,22 +241,11 @@
         const showPopupBtn = document.getElementById("showPopupBtn");
         const volumeSlider1 = document.getElementById("volume1");
         const volumeSlider2 = document.getElementById("volume2");
-        const panSlider1 = document.getElementById("pan1");
-        const panSlider2 = document.getElementById("pan2");
 
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         let isPlaying = false;
         let isPopupVisible = false;
-
-        const panNode1 = audioContext.createStereoPanner();
-        const panNode2 = audioContext.createStereoPanner();
-        const audioSource1 = audioContext.createBufferSource();
-        const audioSource2 = audioContext.createBufferSource();
-
-        panNode1.connect(audioContext.destination);
-        panNode2.connect(audioContext.destination);
-
 
         function setUpAudioSource(audioSource, audioElement) {
             audioElement.src = audioSource;
@@ -365,14 +346,6 @@
                     const volume = event.target.value;
                     audio2.volume = volume;
                 });
-
-        panSlider1.addEventListener("input", (event) => {
-            panNode1.pan.value = event.target.value;
-        });
-
-        panSlider2.addEventListener("input", (event) => {
-            panNode2.pan.value = event.target.value;
-        });
 
         setInterval(updateProgressBar, 100);
     </script>
