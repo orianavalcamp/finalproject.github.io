@@ -265,15 +265,6 @@
         let isPlaying = false;
         let isPopupVisible = false;
 
-        function setUpAudioSource(audioSource, audioElement) {
-            audioElement.src = audioSource;
-            audioElement.load();
-            audioPlayerContainer.style.display = "block";
-            playPauseButton.textContent = "Play";
-            progressBar.style.width = "0%";
-        }
-
-        
         function resumeAudioContext() {
           if (audioContext.state === 'suspended') {
             audioContext.resume().then(() => {
@@ -282,6 +273,14 @@
               console.error("Error resuming AudioContext:", error);
             });
           }
+        }
+
+        function setUpAudioSource(audioSource, audioElement) {
+            audioElement.src = audioSource;
+            audioElement.load();
+            audioPlayerContainer.style.display = "block";
+            playPauseButton.textContent = "Play";
+            progressBar.style.width = "0%";
         }
 
         function togglePlayPause() {
