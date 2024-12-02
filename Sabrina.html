@@ -352,8 +352,102 @@
             panNode.pan.value = event.target.value;
         });
 
-        // Add Low-Pass and High-Pass Filters (No Changes Needed Here)
-        // ... (Keep your original low-pass and high-pass filter code)
+        let isLowPassFilterEnabled = false;  // Track low-pass filter state
+            let isHighPassFilterEnabled = false; // Track high-pass filter state
+            let biquadFilterLowPass = null;  // Reference for low-pass filter
+            let biquadFilterHighPass = null; // Reference for high-pass filter
+
+            // Toggle low-pass filter
+            enableFilterButton.addEventListener('click', () => {
+                if (isLowPassFilterEnabled) {
+                    // If low-pass filter is already enabled, turn it off
+
+                    // Disconnect the low-pass filter from the audio graph
+                    audioSource.disconnect(biquadFilterLowPass);
+                    biquadFilterLowPass.disconnect(panNode);
+
+                    // Reconnect the audio source directly to the panNode
+                    audioSource.connect(panNode);
+
+                    // Reset the filter reference to null
+                    biquadFilterLowPass = null;
+
+                    // Update the button text
+                    enableFilterButton.textContent = "Enable Low-Pass Filter";
+                    isLowPassFilterEnabled = false; // Update filter state
+                } else {
+                    // If low-pass filter is not enabled, apply the low-pass filter
+
+                    // Create and configure the low-pass filter
+                    biquadFilterLowPass = audioContext.createBiquadFilter();
+                    biquadFilterLowPass.type = 'lowpass';
+                    biquadFilterLowPass.frequency.setValueAtTime(slider.value, audioContext.currentTime);
+
+                    // Reconfigure the audio graph: audioSource -> low-pass filter -> panNode -> destination
+                    audioSource.disconnect(); // Disconnect existing connections
+                    audioSource.connect(biquadFilterLowPass);
+                    biquadFilterLowPass.connect(panNode);
+
+                    // Update the button text
+                    enableFilterButton.textContent = "Disable Low-Pass Filter";
+                    isLowPassFilterEnabled = true; // Update filter state
+                }
+            });
+
+            // Toggle high-pass filter
+            document.getElementById('enableHighPassFilter').addEventListener('click', () => {
+                if (isHighPassFilterEnabled) {
+                    // If high-pass filter is already enabled, turn it off
+
+                    // Disconnect the high-pass filter from the audio graph
+                    audioSource.disconnect(biquadFilterHighPass);
+                    biquadFilterHighPass.disconnect(panNode);
+
+                    // Reconnect the audio source directly to the panNode
+                    audioSource.connect(panNode);
+
+                    // Reset the filter reference to null
+                    biquadFilterHighPass = null;
+
+                    // Update the button text
+                    document.getElementById('enableHighPassFilter').textContent = "Enable High-Pass Filter";
+                    isHighPassFilterEnabled = false; // Update filter state
+                } else {
+                    // If high-pass filter is not enabled, apply the high-pass filter
+
+                    // Create and configure the high-pass filter
+                    biquadFilterHighPass = audioContext.createBiquadFilter();
+                    biquadFilterHighPass.type = 'highpass';
+                    biquadFilterHighPass.frequency.setValueAtTime(slider.value, audioContext.currentTime);
+
+                    // Reconfigure the audio graph: audioSource -> high-pass filter -> panNode -> destination
+                    audioSource.disconnect(); // Disconnect existing connections
+                    audioSource.connect(biquadFilterHighPass);
+                    biquadFilterHighPass.connect(panNode);
+
+                    // Update the button text
+                    document.getElementById('enableHighPassFilter').textContent = "Disable High-Pass Filter";
+                    isHighPassFilterEnabled = true; // Update filter state
+                }
+            });
+
+            // Update the filter's frequency dynamically with the slider
+            slider.addEventListener('input', () => {
+                const frequency = slider.value;
+
+                // If the low-pass filter is enabled, update its frequency
+                if (biquadFilterLowPass) {
+                    biquadFilterLowPass.frequency.setValueAtTime(frequency, audioContext.currentTime);
+                }
+
+                // If the high-pass filter is enabled, update its frequency
+                if (biquadFilterHighPass) {
+                    biquadFilterHighPass.frequency.setValueAtTime(frequency, audioContext.currentTime);
+                }
+
+                // Update the displayed frequency value
+                frequencyValue.textContent = frequency; 
+            });
     </script>
 
 </body>
