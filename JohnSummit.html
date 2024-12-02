@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oriana Valcamp Final Project</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=League+Script&display=swap');
+        @media (min-width: 1025px) {
+            body {
+                background-image: url('john_summit_laptop.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: black;
+            }
+        }
+        @media (min-width: 701px) and (max-width: 1024px) and (orientation: portrait){
+            body {
+                background-image: url('john_summit_ipad_vertical.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: black;
+            }
+        }
+        @media (min-width: 701px) and (max-width: 1024px) and (orientation: landscape){
+            body {
+                background-image: url('john_summit_ipad_horizontal.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: black;
+            }
+        }
+        @media (min-width: 641px) and (max width: 700px){
+            body {
+                background-image: url('john_summit_tablet.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: black;
+            }
+        }
+        @media (max-width: 640px){
+            body {
+                background-image: url('john_summit_phone.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: black;
+            }
+        }
+
+    	.container {
+        	display: flex;
+        	flex-wrap: wrap;
+        	justify-content: center;
+    	}
+
+    	.item {
+       	 	width: 100%;
+       	 	max-width: 400px;
+        	margin: 20px;
+        	text-align: center;
+    	}
+    	img{
+    		cursor: pointer;
+    	}
+
+        .button{
+            font-family: league script;
+            background-color: black;
+            width: 25%;
+            color: white;
+            cursor: pointer;
+        }
+
+	</style>
+</head>
+<body>
+    <a href = "FinalProject.html">
+        <button class="button" style="font-size: 20pt;">Back to Main Gallery</button>
+    </a>
+    <img style="width: 100px; position: absolute; top: 0px; right: 0px;" src="record.gif">
+    <img style="width: 75px; position: absolute; bottom: 0px; left: 10px;" src="tinted_mixer.png">
+</body>
+</html>
