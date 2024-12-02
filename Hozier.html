@@ -204,5 +204,30 @@
         <a href="#" class="audioMenuItem" data-audio="Short N Sweet/DontSmileVocals.mp3" data-audio2="Short N Sweet/DontSmileInstrument.mp3">Don't Smile</a>
       </div>
     </div>
+
+<div class="audio-container" id="audioPlayerContainer" style="display: none; position: center;">
+        <audio id="audio1" preload="auto"></audio>
+        <audio id="audio2" preload="auto"></audio>
+
+        <button class= "button" id="playPauseButton">Play</button>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+    </div>
+        <button id="showPopupBtn">
+            <img style="width: 75px; position: absolute; bottom: 0px; left: 10px;" src="mixer.png">
+        </button>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <label for="volume1">Vocal Volume: </label>
+            <input id="volume1" type="range" min="0" max="1" step=".01" value="1">
+            <br>
+            <label for="volume2">Instrument Volume: </label>
+            <input id="volume2" type="range" min="0" max="1" step="0.01" value="1">
+        </div>
+    </div>
 </body>
 </html>
