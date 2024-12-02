@@ -196,7 +196,7 @@
         <a href="#" class="audioMenuItem" data-audio="Sharpest Tool.mp3" data-audio2="SharpestToolInstrument.mp3">Sharpest Tool</a>
         <a href="#" class="audioMenuItem" data-audio="Coincidence.mp3" data-audio2="CoincidenceInstrument.mp3">Coincidence</a>
         <a href="#" class="audioMenuItem" data-audio="Bed Chem.mp3" data-audio2="BedChemInstrument.mp3">Bed Chem</a>
-        <a href="#" class="audioMenuItem" data-audio="EspressoInstrument.mp3" data-audio2="EspressoVocals.mp3">Espresso</a>
+        <a href="#" class="audioMenuItem" data-audio="EspressoInstrument.mp3" data-audio2="spressoVocals.mp3">Espresso</a>
         <a href="#" class="audioMenuItem" data-audio="Dumb & Poetic.mp3" data-audio2="DumbandPoeticInstrument.mp3">Dumb & Poetic</a>
         <a href="#" class="audioMenuItem" data-audio="Slim Pickins.mp3" data-audio2="SlimPickinsInstrument.mp3">Slim Pickins</a>
         <a href="#" class="audioMenuItem" data-audio="Juno.mp3" data-audio2="JunoInstrument.mp3">Juno</a>
@@ -223,7 +223,7 @@
     <div id="popup" class="popup">
         <div class="popup-content">
             <label for="volume1">Vocal Volume: </label>
-            <input id="volume1" type="range" min="0" max="1" step="0.01" value="1">
+            <input id="volume1" type="range" min="0" max="1" step=".01" value="1">
             <br>
             <label for="volume2">Instrument Volume: </label>
             <input id="volume2" type="range" min="0" max="1" step="0.01" value="1">
@@ -331,12 +331,12 @@
             }
         });
 
-        volumeSlider1.addEventListener("input", function(event) => {
+        volumeSlider1.addEventListener("input", (event) => {
                     const volume = event.target.value;
                     audio1.volume = volume;
                 });
 
-        volumeSlider2.addEventListener("input", function(event) => {
+        volumeSlider2.addEventListener("input", (event) => {
                     const volume = event.target.value;
                     audio2.volume = volume;
                 });
