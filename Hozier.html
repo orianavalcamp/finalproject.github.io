@@ -299,6 +299,13 @@
             const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio2.duration);
             audio1.currentTime = newTime;
             audio2.currentTime = newTime;
+
+            if (!isPlaying) {
+                audio1.play();
+                audio2.play();
+                playPauseButton.textContent = "Pause";
+                isPlaying = true;
+            }
         }
 
         function togglePopup() {
@@ -346,13 +353,13 @@
         window.addEventListener("click", resumeAudioContext);
 
         volumeSlider1.addEventListener("input", (event) => {
-                    const volume = event.target.value;
-                    audio1.volume = volume;
+            const volume = event.target.value;
+            audio1.volume = volume;
         });
 
         volumeSlider2.addEventListener("input", (event) => {
-                    const volume = event.target.value;
-                    audio2.volume = volume;
+            const volume = event.target.value;
+            audio2.volume = volume;
         });
 
         panningSlider1.addEventListener("input", (event) => {
