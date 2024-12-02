@@ -228,6 +228,12 @@
             <br>
             <label for="volume2">Instrument Volume: </label>
             <input id="volume2" type="range" min="0" max="1" step="0.01" value="1">
+            <br>
+            <label for="panning1">Vocal Panning: </label>
+            <input id="panning1" type="range" min="-1" max="1" step="0.01" value="0">
+            <br>
+            <label for="panning2">Instrument Panning: </label>
+            <input id="panning2" type="range" min="-1" max="1" step="0.01" value="0">
         </div>
     </div>
     
@@ -242,8 +248,19 @@
         const showPopupBtn = document.getElementById("showPopupBtn");
         const volumeSlider1 = document.getElementById("volume1");
         const volumeSlider2 = document.getElementById("volume2");
+        const panningSlider1 = document.getElementById("panning1");
+        const panningSlider2 = document.getElementById("panning2");
 
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const audioContext = new AudioContext();
+        const track1 = audioContext.createMediaElementSource(audio1);
+        const track2 = audioContext.createMediaElementSource(audio2);
+
+        const panner1 = audioContext.createStereoPanner();
+        const panner2 = audioContext.createStereoPanner();
+
+        // Connect audio tracks to panners, then to the destination
+        track1.connect(panner1).connect(audioContext.destination);
+        track2.connect(panner2).connect(audioContext.destination);
 
         let isPlaying = false;
         let isPopupVisible = false;
@@ -314,7 +331,6 @@
         });
 
         playPauseButton.addEventListener("click", togglePlayPause);
-
         showPopupBtn.addEventListener("click", togglePopup);
 
         // Update the progress bar as the audio plays
@@ -347,6 +363,15 @@
                     const volume = event.target.value;
                     audio2.volume = volume;
                 });
+
+        // Panning sliders
+        panningSlider1.addEventListener("input", (event) => {
+            panner1.pan.value = event.target.value;
+        });
+
+        panningSlider2.addEventListener("input", (event) => {
+            panner2.pan.value = event.target.value;
+        });
 
         setInterval(updateProgressBar, 100);
     </script>
