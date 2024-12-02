@@ -361,12 +361,12 @@
 
         volumeSlider1.addEventListener("input", (event) => {
                     const volume = event.target.value;
-                    audio1.volume = volume;
+                    audio1.volume = volume/100;
                 });
 
         volumeSlider2.addEventListener("input", (event) => {
                     const volume = event.target.value;
-                    audio2.volume = volume;
+                    audio2.volume = volume/100;
                 });
 
         // Panning sliders
