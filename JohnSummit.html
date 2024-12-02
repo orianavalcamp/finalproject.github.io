@@ -251,19 +251,25 @@
         const panningSlider1 = document.getElementById("panning1");
         const panningSlider2 = document.getElementById("panning2");
 
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const audioContext = new AudioContext();
         const track1 = audioContext.createMediaElementSource(audio1);
         const track2 = audioContext.createMediaElementSource(audio2);
-
-        const panner1 = audioContext.createStereoPanner();
-        const panner2 = audioContext.createStereoPanner();
 
         // Connect audio tracks to panners, then to the destination
         track1.connect(panner1).connect(audioContext.destination);
         track2.connect(panner2).connect(audioContext.destination);
 
+        const panner1 = audioContext.createStereoPanner();
+        const panner2 = audioContext.createStereoPanner();
+
         let isPlaying = false;
         let isPopupVisible = false;
+
+        function resumeAudioContext() {
+            if (audioContext.state === "suspended") {
+                audioContext.resume();
+            }
+        }
 
         function setUpAudioSource(audioSource, audioElement) {
             audioElement.src = audioSource;
