@@ -331,12 +331,12 @@
             }
         });
 
-        volumeSlider1.addEventListener("input", (event) => {
+        volumeSlider1.addEventListener("input", function(event) => {
                     const volume = event.target.value;
                     audio1.volume = volume;
                 });
 
-        volumeSlider2.addEventListener("input", (event) => {
+        volumeSlider2.addEventListener("input", function(event) => {
                     const volume = event.target.value;
                     audio2.volume = volume;
                 });
