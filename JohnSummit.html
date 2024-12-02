@@ -268,7 +268,7 @@
         function setUpAudioSource(audioSource, audioElement) {
             audioElement.src = audioSource;
             audioElement.load();
-            audioPlayerContainer.style.display = "block";
+            document.getElementById("audioPlayerContainer").style.display = "block";
             playPauseButton.textContent = "Play";
             progressBar.style.width = "0%";
         }
