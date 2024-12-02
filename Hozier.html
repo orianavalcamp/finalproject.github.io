@@ -359,6 +359,9 @@
             }
         });
 
+        // Ensure the audio context is resumed on user interaction
+        window.addEventListener("click", resumeAudioContext);
+
         volumeSlider1.addEventListener("input", (event) => {
                     const volume = event.target.value;
                     audio1.volume = volume/100;
@@ -379,9 +382,6 @@
         });
 
         setInterval(updateProgressBar, 100);
-
-         // Ensure the audio context is resumed on user interaction
-        window.addEventListener("click", resumeAudioContext);
     </script>
 </body>
 </html>
