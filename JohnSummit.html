@@ -251,7 +251,7 @@
         const panningSlider1 = document.getElementById("panning1");
         const panningSlider2 = document.getElementById("panning2");
 
-        const audioContext = new AudioContext();
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const track1 = audioContext.createMediaElementSource(audio1);
         const track2 = audioContext.createMediaElementSource(audio2);
 
