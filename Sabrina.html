@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Oriana Valcamp Final Project</title>
     <style>
@@ -47,26 +47,26 @@
             }
         }
 
-    	.container {
-        	display: flex;
-        	flex-wrap: wrap;
-        	justify-content: center;
-    	}
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    	.item {
-       	 	width: 100%;
-       	 	max-width: 400px;
-        	margin: 20px;
-        	text-align: center;
-    	}
+        .item {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+            text-align: center;
+        }
 
-    	img{
-    		cursor: pointer;
-    	}
+        img{
+            cursor: pointer;
+        }
 
         .button{
             font-family: league script;
-            background color: white;
+            background-color: white;
             width: 10%;
             color: red;
             cursor: pointer;
@@ -179,7 +179,7 @@
             cursor: pointer;
             color: #000;
         }
-	</style>
+    </style>
 </head>
 <body>
     <a href = "FinalProject.html">
@@ -190,23 +190,24 @@
             <img style="width: 100px; position: absolute; top: 0px; right: 0px;" src="record.gif">
         </button>
       <div class="dropdown-content">
-        <a href="#" class="audioMenuItem" data-audio="Taste.mp3">Taste</a>
-        <a href="#" class="audioMenuItem" data-audio="Please Please Please.mp3">Please Please Please</a>
-        <a href="#" class="audioMenuItem" data-audio="Good Graces.mp3">Good Graces</a>
-        <a href="#" class="audioMenuItem" data-audio="Sharpest Tool.mp3">Sharpest Tool</a>
-        <a href="#" class="audioMenuItem" data-audio="Coincidence.mp3">Coincidence</a>
-        <a href="#" class="audioMenuItem" data-audio="Bed Chem.mp3">Bed Chem</a>
-        <a href="#" class="audioMenuItem" data-audio="Espresso.mp3">Espresso</a>
-        <a href="#" class="audioMenuItem" data-audio="Dumb & Poetic.mp3">Dumb & Poetic</a>
-        <a href="#" class="audioMenuItem" data-audio="Slim Pickins.mp3">Slim Pickins</a>
-        <a href="#" class="audioMenuItem" data-audio="Juno.mp3">Juno</a>
-        <a href="#" class="audioMenuItem" data-audio="Lie To Girls.mp3">Lie To Girls</a>
-        <a href="#" class="audioMenuItem" data-audio="Dont Smile.mp3">Don't Smile</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Taste.mp3" data-audio2 = "Short N Sweet/TasteInstrument.mp3">Taste</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Please Please Please.mp3" data-audio2 = "Short N Sweet/PleasePleasePleaseInstrument.mp3">Please Please Please</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Good Graces.mp3" data-audio2="Short N Sweet/GoodGracesInstrument.mp3">Good Graces</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Sharpest Tool.mp3" data-audio2="Short N Sweet/SharpestToolInstrument.mp3">Sharpest Tool</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Coincidence.mp3" data-audio2="Short N Sweet/CoincidenceInstrument.mp3">Coincidence</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Bed Chem.mp3" data-audio2="Short N Sweet/BedChemInstrument.mp3">Bed Chem</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/EspressoInstrument.mp3" data-audio2="Short N Sweet/EspressoVocals.mp3">Espresso</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Dumb & Poetic.mp3" data-audio2="Short N Sweet/DumbandPoeticInstrument.mp3">Dumb & Poetic</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Slim Pickins.mp3" data-audio2="Short N Sweet/SlimPickinsInstrument.mp3">Slim Pickins</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Juno.mp3" data-audio2="Short N Sweet/JunoInstrument.mp3">Juno</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Lie To Girls.mp3" data-audio2="Short N Sweet/LieToGirlsInstrument.mp3">Lie To Girls</a>
+        <a href="#" class="audioMenuItem" data-audio="Short N Sweet/Dont Smile.mp3" data-audio2="Short N Sweet/DontSmileInstrument.mp3">Don't Smile</a>
       </div>
     </div>
 
     <div class="audio-container" id="audioPlayerContainer" style="display: none; position: center;">
-        <audio id="audio" preload="auto"></audio>
+        <audio id="audio1" preload="auto"></audio>
+        <audio id="audio2" preload="auto"></audio>
 
         <button class= "button" id="playPauseButton">Play</button>
 
@@ -221,104 +222,97 @@
 
     <div id="popup" class="popup">
         <div class="popup-content">
-            <label for="volume">Volume: </label>
-            <input id="volume" type="range" min="0" max="1" step="0.01" value="1">
+            <label for="volume1">Vocal Volume: </label>
+            <input id="volume1" type="range" min="0" max="1" step="0.01" value="1">
+            <br>
+            <label for="volume2">Instrument Volume: </label>
+            <input id="volume2" type="range" min="0" max="1" step="0.01" value="1">
             <br>
             <label for="pan">Pan</label>
             <input id="pan" type="range" min="-1" max="1" step="0.1" value="0">
             <br>
-            <label for="frequencySlider">Cutoff Frequency: <span id="frequencyValue">1000</span> Hz</label>
-            <input id="frequencySlider" type="range" min="100" max="20000" value="1000" step="10">
-            <br>
-            <button class = "button" id="enableFilter" style="width: auto;">Enable Low-Pass Filter</button>
-            <button class = "button" id="enableHighPassFilter" style="width: auto;">Enable High-Pass Filter</button>
         </div>
     </div>
     
+
     <script>
-        const audio = document.getElementById("audio");
+        const audio1 = document.getElementById("audio1");
+        const audio2 = document.getElementById("audio2");
         const playPauseButton = document.getElementById("playPauseButton");
         const progressBar = document.getElementById("progressBar");
         const progressContainer = document.querySelector(".progress-container");
-        const audioPlayerContainer = document.getElementById("audioPlayerContainer");
         const audioMenuItems = document.querySelectorAll(".audioMenuItem");
         const popup = document.getElementById("popup");
         const showPopupBtn = document.getElementById("showPopupBtn");
-        const volumeSlider = document.getElementById('volume');
-        const panSlider = document.getElementById('pan');
-        const slider = document.getElementById('frequencySlider');
-        const frequencyValue = document.getElementById('frequencyValue');
-        const enableFilterButton = document.getElementById('enableFilter');
+        const volumeSlider1 = document.getElementById("volume1");
+        const volumeSlider2 = document.getElementById("volume2");
+        const panSlider = document.getElementById("pan");
 
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let isPlaying = false;
+        let isPopupVisible = false;
 
-        let isPlaying = false; // Ensure the initial state is false
-        let biquadFilter, isFilterEnabled = false;
-        let biquadFilterLowPass = null;  
-        let biquadFilterHighPass = null;
+        function setUpAudioSource(audioSource, audioElement) {
+            audioElement.src = audioSource;
+            audioElement.load();
+            audioPlayerContainer.style.display = "block";
+            playPauseButton.textContent = "Play";
+            progressBar.style.width = "0%";
+        }
 
-        const audioSource = audioContext.createMediaElementSource(audio);
-        const panNode = audioContext.createStereoPanner();
-        audioSource.connect(panNode);
-        panNode.connect(audioContext.destination);
+        function togglePlayPause() {
+            if (isPlaying) {
+                audio1.pause();
+                audio2.pause();
+                playPauseButton.textContent = "Play";
+            } else {
+                audio1.play();
+                audio2.play();
+                playPauseButton.textContent = "Pause";
+            }
+            isPlaying = !isPlaying;
+        }
 
-        //audio.volume = volumeSlider.value;
+        function updateProgressBar() {
+            const totalDuration = Math.max(audio1.duration, audio2.duration);
+            const currentTime = Math.max(audio1.currentTime, audio2.currentTime);
+            const progress = (currentTime / totalDuration) * 100;
+            progressBar.style.width = progress + "%";
+        }
 
-        // Function to resume the AudioContext (required for modern browsers)
-        function resumeAudioContext() {
-            if (audioContext.state === 'suspended') {
-                audioContext.resume().then(() => {
-                    console.log("AudioContext resumed.");
-                }).catch(error => {
-                    console.error("Error resuming AudioContext:", error);
-                });
+        function handleProgressClick(event) {
+            const progressContainerWidth = progressContainer.offsetWidth;
+            const clickPosition = event.offsetX;
+            const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio2.duration);
+            audio1.currentTime = newTime;
+            audio2.currentTime = newTime;
+        }
+
+        function togglePopup() {
+            isPopupVisible = !isPopupVisible;
+            if (isPopupVisible) {
+                popup.style.display = "flex";
+            } else {
+                popup.style.display = "none";
             }
         }
 
-        // Show the audio player when the menu item is clicked
         audioMenuItems.forEach(item => {
-            item.addEventListener("click", (e) => {
-                e.preventDefault(); // Prevent the default anchor behavior
-                resumeAudioContext(); // Ensure AudioContext is resumed
-
-                const audioSrc = item.getAttribute("data-audio");
-
-                // Update audio source and play
-                audio.src = audioSrc;
-                audio.load(); // Load the new audio source
-                audio.play().then(() => {
-                    playPauseButton.textContent = "Pause";
-                    isPlaying = true;
-
-                    // Show the audio player container
-                    audioPlayerContainer.style.display = "block";
-                }).catch(error => {
-                    console.error("Playback failed:", error);
-                });
+            item.addEventListener("click", (event) => {
+                const audioSource = item.getAttribute("data-audio");
+                const audioSource2 = item.getAttribute("data-audio2");
+                setUpAudioSource(audioSource, audio1);
+                if (audioSource2) setUpAudioSource(audioSource2, audio2);
+                togglePlayPause();
             });
         });
 
-        // Play/Pause functionality
-        playPauseButton.addEventListener("click", () => {
-            resumeAudioContext(); // Resume AudioContext if necessary
+        playPauseButton.addEventListener("click", togglePlayPause);
 
-            if (isPlaying) {
-                audio.pause();
-                playPauseButton.textContent = "Play";
-            } else {
-                audio.play().then(() => {
-                    playPauseButton.textContent = "Pause";
-                    isPlaying = true;
-                }).catch(error => {
-                    console.error("Playback failed:", error);
-                });
-            }
-            isPlaying = !isPlaying;
-        });
+        showPopupBtn.addEventListener("click", togglePopup);
 
         // Update the progress bar as the audio plays
-        audio.addEventListener("timeupdate", () => {
-            const progress = (audio.currentTime / audio.duration) * 100;
+        audio1.addEventListener("timeupdate", () => {
+            const progress = (audio1.currentTime / audio1.duration) * 100;
             progressBar.style.width = `${progress}%`;
         });
 
@@ -326,32 +320,32 @@
         progressContainer.addEventListener("click", (e) => {
             const progressWidth = progressContainer.offsetWidth;
             const clickPosition = e.offsetX;
-            const seekTime = (clickPosition / progressWidth) * audio.duration;
-            audio.currentTime = seekTime;
+            const seekTime = (clickPosition / progressWidth) * audio1.duration;
+            audio1.currentTime = seekTime;
+            audio2.currentTime = seekTime;
         });
 
-        // When the button is clicked, show the popup
-        showPopupBtn.addEventListener("click", () => {
-            popup.style.display = "flex"; // Show the popup by changing the display style
-        });
-
-        // Optional: Close the popup if the user clicks outside of the popup content
         window.addEventListener("click", (event) => {
             if (event.target === popup) {
-                popup.style.display = "none"; // Hide the popup if clicked outside
+                popup.style.display = "none";
             }
         });
 
-        // Update the audio volume
-        volumeSlider.addEventListener('input', (event) => {
-            audio.volume = parseFloat(event.target.value); // Correctly update the volume
-        });
+        volumeSlider1.addEventListener("input", (event) => {
+                    const volume = event.target.value;
+                    audio1.volume = volume;
+                });
 
-        // Pan functionality
-        panSlider.addEventListener('input', (event) => {
+        volumeSlider2.addEventListener("input", (event) => {
+                    const volume = event.target.value;
+                    audio2.volume = volume;
+                });
+
+        panSlider.addEventListener("input", (event) => {
             panNode.pan.value = event.target.value;
         });
-    </script>
 
+        setInterval(updateProgressBar, 100);
+    </script>
 </body>
 </html>
