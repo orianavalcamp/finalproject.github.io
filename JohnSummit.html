@@ -286,6 +286,16 @@
             isPlaying = !isPlaying;
         }
 
+        function resumeAudioContext() {
+          if (audioContext.state === 'suspended') {
+            audioContext.resume().then(() => {
+              console.log("AudioContext resumed.");
+            }).catch(error => {
+              console.error("Error resuming AudioContext:", error);
+            });
+          }
+        }
+
         function updateProgressBar() {
             const totalDuration = Math.max(audio1.duration, audio2.duration);
             const currentTime = Math.max(audio1.currentTime, audio2.currentTime);
