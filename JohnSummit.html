@@ -306,7 +306,7 @@
         function handleProgressClick(event) {
             const progressContainerWidth = progressContainer.offsetWidth;
             const clickPosition = event.offsetX;
-            const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio1.duration);
+            const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio2.duration);
             audio1.currentTime = newTime;
             audio2.currentTime = newTime;
         }
@@ -331,6 +331,7 @@
         });
 
         playPauseButton.addEventListener("click", togglePlayPause);
+
         showPopupBtn.addEventListener("click", togglePopup);
 
         // Update the progress bar as the audio plays
