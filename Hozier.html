@@ -344,19 +344,14 @@
             progressBar.style.width = `${progress}%`;
         });
 
-        audio2.addEventListener("timeupdate", () => {
-            const progress = (audio2.currentTime / audio2.duration) * 100;
-            progressBar.style.width = `${progress}%`;
-        });
 
         // Click event to seek audio position
         progressContainer.addEventListener("click", (e) => {
             const progressWidth = progressContainer.offsetWidth;
             const clickPosition = e.offsetX;
-            const seekTime1 = (clickPosition / progressWidth) * audio1.duration;
-            const seekTime2 = (clickPosition / progressWidth) * audio2.duration;
-            audio1.currentTime = seekTime1;
-            audio2.currentTime = seekTime2;
+            const seekTime = (clickPosition / progressWidth) * audio1.duration;
+            audio1.currentTime = seekTime;
+            audio2.currentTime = seekTime;
         });
 
         window.addEventListener("click", (event) => {
