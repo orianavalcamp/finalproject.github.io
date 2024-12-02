@@ -327,7 +327,7 @@
         progressContainer.addEventListener("click", (e) => {
             const progressWidth = progressContainer.offsetWidth;
             const clickPosition = e.offsetX;
-            const seekTime1 = (clickPosition / progressWidth) * audio1.duration;
+            const seekTime = (clickPosition / progressWidth) * audio1.duration;
             audio1.currentTime = seekTime;
             audio2.currentTime = seekTime;
         });
