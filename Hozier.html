@@ -227,7 +227,6 @@
             <input id="panning2" type="range" min="-1" max="1" step="0.01" value="0">
         </div>
     </div>
-    
     <script>
         const audio1 = document.getElementById("audio1");
         const audio2 = document.getElementById("audio2");
@@ -333,8 +332,6 @@
             const progressWidth = progressContainer.offsetWidth;
             const clickPosition = e.offsetX;
             const seekTime = (clickPosition / progressWidth) * audio1.duration;
-            audio1.pause();
-            audio2.pause();
             audio1.currentTime = seekTime;
             audio2.currentTime = seekTime;
         });
@@ -345,16 +342,16 @@
             }
         });
 
-        volumeSlider1.addEventListener("input", function(event) => {
+        volumeSlider1.addEventListener("input", (event) => {
             const volume = event.target.value;
             audio1.volume = volume;
         });
 
-        volumeSlider2.addEventListener("input", function(event) => {
+        volumeSlider2.addEventListener("input", (event) => {
             const volume = event.target.value;
             audio2.volume = volume;
         });
-        
+
         panningSlider1.addEventListener("input", (event) => {
             panner1.pan.value = event.target.value;
         });
@@ -363,9 +360,8 @@
             panner2.pan.value = event.target.value;
         });
 
-        window.addEventListener("click", resumeAudioContext);
-
         setInterval(updateProgressBar, 100);
+        window.addEventListener("click", resumeAudioContext);
     </script>
 </body>
 </html>
