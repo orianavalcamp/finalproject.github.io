@@ -342,6 +342,8 @@
             const progressWidth = progressContainer.offsetWidth;
             const clickPosition = e.offsetX;
             const seekTime = (clickPosition / progressWidth) * audio1.duration;
+            audio1.pause();
+            audio2.pause();
             audio1.currentTime = seekTime;
             audio2.currentTime = seekTime;
         });
@@ -352,12 +354,12 @@
             }
         });
 
-        volumeSlider1.addEventListener("input", (event) => {
+        volumeSlider1.addEventListener("input", function(event) => {
             const volume = event.target.value;
             audio1.volume = volume;
         });
 
-        volumeSlider2.addEventListener("input", (event) => {
+        volumeSlider2.addEventListener("input", function(event) => {
             const volume = event.target.value;
             audio2.volume = volume;
         });
