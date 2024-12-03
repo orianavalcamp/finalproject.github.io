@@ -299,6 +299,13 @@
             const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio2.duration);
             audio1.currentTime = newTime;
             audio2.currentTime = newTime;
+
+            if (!isPlaying) {
+                audio1.play();
+                audio2.play();
+                playPauseButton.textContent = "Pause";
+                isPlaying = true;
+            }
         }
 
         function togglePopup() {
@@ -309,6 +316,8 @@
                 popup.style.display = "none";
             }
         }
+
+        window.addEventListener("click", resumeAudioContext);
 
         audioMenuItems.forEach(item => {
             item.addEventListener("click", (event) => {
@@ -362,8 +371,6 @@
         });
 
         setInterval(updateProgressBar, 100);
-        
-        window.addEventListener("click", resumeAudioContext);
     </script>
 </body>
 </html>
