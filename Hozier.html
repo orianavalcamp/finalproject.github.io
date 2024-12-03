@@ -299,13 +299,6 @@
             const newTime = (clickPosition / progressContainerWidth) * Math.max(audio1.duration, audio2.duration);
             audio1.currentTime = newTime;
             audio2.currentTime = newTime;
-
-            if (!isPlaying) {
-                audio1.play();
-                audio2.play();
-                playPauseButton.textContent = "Pause";
-                isPlaying = true;
-            }
         }
 
         function togglePopup() {
@@ -316,8 +309,6 @@
                 popup.style.display = "none";
             }
         }
-
-        window.addEventListener("click", resumeAudioContext);
 
         audioMenuItems.forEach(item => {
             item.addEventListener("click", (event) => {
@@ -371,6 +362,8 @@
         panningSlider2.addEventListener("input", (event) => {
             panner2.pan.value = event.target.value;
         });
+
+        window.addEventListener("click", resumeAudioContext);
 
         setInterval(updateProgressBar, 100);
     </script>
