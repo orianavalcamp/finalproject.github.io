@@ -246,11 +246,13 @@
         const track1 = audioContext.createMediaElementSource(audio1);
         const track2 = audioContext.createMediaElementSource(audio2);
 
+        const gainNode1 = audioContext.createGain();
+        const gainNode2 = audioContext.createGain();
         const panner1 = audioContext.createStereoPanner();
         const panner2 = audioContext.createStereoPanner();
 
-        track1.connect(panner1).connect(audioContext.destination);
-        track2.connect(panner2).connect(audioContext.destination);
+        track1.connect(gainNode1).connect(panner1).connect(audioContext.destination);
+        track2.connect(gainNode2).connect(panner2).connect(audioContext.destination);
 
         let isPlaying = false;
         let isPopupVisible = false;
@@ -345,12 +347,12 @@
 
         volumeSlider1.addEventListener("input", (event) => {
             const volume = event.target.value;
-            audio1.volume = volume;
+            gainNode1.gain.value = volume;
         });
 
         volumeSlider2.addEventListener("input", (event) => {
             const volume = event.target.value;
-            audio2.volume = volume;
+            gainNode2.gain.value = volume;
         });
 
         panningSlider1.addEventListener("input", (event) => {
